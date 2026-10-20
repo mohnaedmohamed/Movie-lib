@@ -10,7 +10,7 @@ class Moviescort extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.all(10),
-      width: 20,
+      width: 10,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
         boxShadow: [
@@ -36,7 +36,11 @@ class Moviescort extends StatelessWidget {
                   height: 300,
                   fit: BoxFit.fill,
                 ),
-                Positioned(top: 8, right: 8, child: Icon(Icons.bookmark)),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Icon(Icons.bookmark, color: Colors.white),
+                ),
                 Positioned(
                   top: 8,
                   left: 8,

@@ -9,7 +9,7 @@ class Homebage extends StatefulWidget {
 }
 
 class HomebageState extends State<Homebage> {
-  bool isGrid = false;
+  bool isGrid = true;
   String query = "";
   void search(String value) {
     setState(() {
@@ -52,28 +52,33 @@ class HomebageState extends State<Homebage> {
     }
 
     Widget listbuilder() {
-      return Column(
-        children: [
-          TextField(
-            onChanged: search,
-            decoration: const InputDecoration(
-              hintText: 'Search movies...',
-              prefixIcon: Icon(Icons.search),
-            ),
+      return Center(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width / 4,
+          child: Column(
+            children: [
+              TextField(
+                style: TextStyle(color: Colors.white),
+                onChanged: search,
+                decoration: const InputDecoration(
+                  hintText: 'Search movies...',
+                  prefixIcon: Icon(Icons.search),
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: filtered_Movies.length,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      height: 400,
+                      child: Moviescort(movie: filtered_Movies[index]),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: filtered_Movies.length,
-              itemBuilder: (context, index) {
-                return SizedBox(
-                  height: 500,
-
-                  child: Moviescort(movie: filtered_Movies[index]),
-                );
-              },
-            ),
-          ),
-        ],
+        ),
       );
     }
 
@@ -88,7 +93,7 @@ class HomebageState extends State<Homebage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
           IconButton(
-            icon: Icon(isGrid ? Icons.grid_view : Icons.view_list),
+            icon: Icon(isGrid ? Icons.view_list : Icons.grid_view),
             onPressed: () {
               setState(() {
                 isGrid = !isGrid;
